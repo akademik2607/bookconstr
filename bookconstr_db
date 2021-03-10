@@ -1,0 +1,52 @@
+-- MySQL dump 10.13  Distrib 5.7.33, for Linux (x86_64)
+--
+-- Host: localhost    Database: bookconstr_db
+-- ------------------------------------------------------
+-- Server version	5.7.33-0ubuntu0.18.04.1
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `prints`
+--
+
+DROP TABLE IF EXISTS `prints`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `prints` (
+  `print_id` int(11) NOT NULL AUTO_INCREMENT,
+  `print_path` varchar(100) NOT NULL,
+  `types` varchar(100) NOT NULL,
+  PRIMARY KEY (`print_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `prints`
+--
+
+LOCK TABLES `prints` WRITE;
+/*!40000 ALTER TABLE `prints` DISABLE KEYS */;
+INSERT INTO `prints` VALUES (1,'03ae7dc17d84ce09a9cf1a3631793d53.png','classic'),(2,'e5bfcf32715714afecb04c377321ddeb.png','classic'),(3,'d84c1869e0d75d26e985bbae62b2c686.png','classic'),(4,'dd8d3fdbe35235c339eac7cb515815f3.png','classic'),(5,'2651bbeb7049675f8b046356250cef48.png','classic'),(6,'536fbfb110a61dca17662eae3ac7ffaa.png','classic'),(7,'9a2072363854847edba28c762a30d6d2.png','classic'),(8,'7a837d7f8a89daf46b4698b8d8bfb6ff.png','classic'),(9,'e128ee7a4092219e5c1cfc4959d723ff.png','classic'),(10,'e2c0c89a40d4ef7abafb5cb325c63ad0.png','classic'),(11,'c27c7676c199c036b8b1fa02fc3b39f7.png','classic'),(12,'7ed110f4d918e7baaa43eeeb51514a94.png','classic'),(13,'b52dcb85d4a9c6c8fbbbb0368739356b.png','classic'),(14,'47d5cf8a46d020303bbb7dcd5711506b.png','classic'),(15,'1bf6c38a02a6bd7ef3ab3146c3b15c22.png','classic'),(16,'99d48d04a16672d35aff226    acb640b14.png','classic'),(17,'659742451968d63035af9f7c26719c47.png','classic'),(18,'18373a18c2a9036202f782b92a2c5532.png','classic'),(19,'9581b881f9848975111606b575db79cc.png','classic'),(20,'12e42ebbde05c481bb21c35ad2097e1d.png','classic'),(21,'109f05ee9a5b07d82046bd6459927087.png','classic'),(22,'737126cfd525ae094fc7afeed0519799.png','classic'),(23,'973ec63100ebee2b6c0dbe4831d27195.png','classic'),(24,'c2f03c46e8edae26bfeccc9335e4e044.png','classic'),(25,'89400afe04189d85af16b4576d87d779.png','classic'),(26,'d040fa58735729d3d773045a628b07ff.png','classic'),(27,'8a447104bc97f2e744e5fa52a05d46cf.png','classic'),(28,'9e80aa71b8a5dfea6ca4527a2d0bac03.png','classic'),(29,'0b9bd6ef94880b67b55bdfb247afd46c.png','classic'),(30,'82a5ad0899408c1cff553fe1f64e96e9.png','classic'),(31,'00adf3645229e826da98afded37aa429.png','classic'),(32,'bc998eb802f56eb5e0fb5b7b56bf8f5b.png','classic'),(33,'1530ecd3b4f7b0550691158c0e9f3ec7.png','classic'),(34,'978e9f9bf7d6d45530174924f8e27e80.png','classic'),(35,'a76ed7cc8366ba3a14d99c2cc75919d9.png','classic'),(36,'f7b5ebb3b0330e5dadfc3d94b195d6e1.png','classic'),(37,'e661f560ac4e7427c7436c84f7582011.png','classic'),(38,'dbee842e2dc1be9af4183109b66b12e.png','classic'),(39,'228817da65ffb6e22f1f40643b024040.png','classic'),(40,'05ddeb5be16e717b1deb3838b86283ae.png','classic'),(41,'0df40c80fad1639266d264b14bed381a.png','classic'),(42,'34e264f594f738be17db8c454240c745.png','classic'),(43,'34e264f594f738be17db8c454240c745.png','classic'),(44,'3640d85bd445e3c01be2ee95a2ffd922.png','classic'),(45,'482be6062105eeddc7855b7357305631.png','classic'),(46,'48aa3fd76cfd87a407619172539e53fb.png','classic'),(47,'f6da23a65ee7fb47930c064f5a35a48e.png','classic'),(48,'c56b2a3e1a5b76ea792f091e9c676c36.png','classic'),(49,'101ccfaa88fdcf406253ddfed3d52e73.png','classic'),(50,'8813b7cbac24cd419f273099c1a6a80f.png','classic'),(51,'653650aeda9a34aec8fa7149243f04a2.png','classic'),(52,'fe58ae3b154dbae93fecc3ba6c1ed1f5.png','classic'),(53,'cd86951b69fe00b05e89960305e062dd.png','classic'),(54,'384e305221c62ecfe9f524452798c88e.png','classic'),(55,'40533eb55e20601354f53a7f37456fb1.png','classic'),(56,'34ae7f49f1172e4f8d0a4b6a745956b6.png','classic'),(57,'136aff37f04c92d3fa376c0e978ab808.png','classic'),(58,'7c5bf2f19869cd26d98c6b06e7ec7ccd.png','classic'),(59,'75c6ca04cfedc10ff346533ce8f97ca5.png','classic'),(60,'f75fd4d3a69eac499f1a8c080c5038bc.png','classic'),(61,'1357fed868f91c06dc407709815e74b8.png','classic'),(62,'c163815f964e7f279ed9a4e317f798ab.png','classic'),(63,'8863e182d7a30360f3b737aeed5b5aa4.png','classic'),(64,'5b3f47db58328fe57b9fd6a70a0f3545.png','classic'),(65,'48b35a9033c8be0bb6b51bdb24e01cee.png','classic'),(66,'4f99680d860ddc43abb5d1056b2ca1d9.png','classic'),(67,'d0be8195885fcdf709def23875cc175d.png','classic'),(68,'52ff969e9490d5ce9f755e8e714efc87.png','classic'),(69,'94ab4b46393fc2dba72d1a79df3194e7.png','classic'),(70,'35cb6b180cab79f7bb86690f997c12ea.png','classic'),(71,'8d72d37c739eea3ad3cd2694149e5263.png','classic'),(72,'528c3b4795312cb68571fcc6a5fd4d56.png','classic'),(73,'4fdea43a3d4a00472d26a8ee780de636.png','classic'),(74,'953efb954cad3ece42810746cbc3d6fe.png','classic'),(75,'ed544917bfc57a55ae48e4ccd17d84c7.png','classic');
+/*!40000 ALTER TABLE `prints` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2021-03-10  8:38:51
