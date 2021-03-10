@@ -1,0 +1,144 @@
+.center-content{
+    margin: 0 25px;
+}
+
+.AD-header .a-logo {
+    margin-top: 15px;
+    background: url(../images/logo.png) no-repeat center;
+    width: 65px;
+    height: 65px;
+    background-size: 100% 100%;
+    float: left;
+}
+
+.AD-header .a-load-photo {
+    margin-top: 22px;
+    float: left;
+    padding: 0 45px;
+}
+
+.AD-header .a-formats {
+    margin-top: 15px;
+    float: left;
+}
+
+
+div {
+    display: block;
+}
+.AD-header #ADHeader {
+    font-weight: bold;
+    font-size: 16px;
+    color: #4e4e57;
+}
+
+.ad-bnt.primary {
+    background: #3f8db5;
+    overflow: hidden;
+}
+.ad-bnt {
+    background: #a6a6a6;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    color: #fff;
+    height: 35px;
+    line-height: 35px;
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: middle;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 0 25px 0;
+    text-align: center;
+    margin: 5px;
+    font-size: 14px;
+    border: none;
+    border-radius: 2rem;
+}
+
+.AD-header .a-formats .a-format.active {
+    background-color: #fff;
+    color: #e75b4e;
+    box-shadow: inset 0 0 0 4px #e75b4e;
+}
+
+.AD-header .a-formats .a-format {
+    display: inline-block;
+    background-color: #d8d8d8;
+    color: #4e4e57;
+    height: 55px;
+    width: 55px;
+    text-align: center;
+    font-size: 15px;
+    cursor: pointer;
+    box-sizing: border-box;
+    text-decoration: none;
+    line-height: 55px;
+    font-weight: normal;
+}
+
+.AD-header .a-cost {
+    margin-top: 48px;
+    float: left;
+    margin-left: 50px;
+}
+
+.a-buttons {
+    position: relative;
+}
+
+.AD-header .a-buttons {
+    margin-top: 15px;
+    float: right;
+}
+
+.AD-header .a-buttons .primary {
+    background: #3f8db5;
+}
+
+.AD-header .a-buttons .butt {
+    background: #a6a6a6;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    color: #fff;
+    height: 35px;
+    line-height: 35px;
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: middle;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 0 25px 0;
+    width: 135px;
+    text-align: center;
+    margin: 5px;
+    font-size: 14px;
+    border-radius: 2rem;
+}
+
+.AD-header div{
+    display:block;
+}
+
+
+.AD-header {
+    position: relative;
+    height: 125px;
+}
+
+header {
+    display: block;
+}
+
+#AD{
+    height: calc(100% - 125px);
+    overflow: hidden;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+
