@@ -1,5 +1,5 @@
 <?php 
-$connect = new PDO('mysql:host=localhost;dbname=bookconstr_db;charset=utf8', 'root', 'Hesaga0808!');
+$connect = new PDO('mysql:host=localhost;dbname=bookconstr_db;charset=utf8', '', '');
 $prints = $connect->query('SELECT * FROM prints')->fetchall();
 
 ?>
