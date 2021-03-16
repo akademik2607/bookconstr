@@ -1,0 +1,127 @@
+-- MySQL dump 10.13  Distrib 5.7.33, for Linux (x86_64)
+--
+-- Host: localhost    Database: bookconstr_db
+-- ------------------------------------------------------
+-- Server version	5.7.33-0ubuntu0.18.04.1
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `colors`
+--
+
+DROP TABLE IF EXISTS `colors`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `colors` (
+  `color_id` int(11) NOT NULL AUTO_INCREMENT,
+  `color_name` varchar(100) NOT NULL,
+  `type` int(11) NOT NULL,
+  PRIMARY KEY (`color_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `colors`
+--
+
+LOCK TABLES `colors` WRITE;
+/*!40000 ALTER TABLE `colors` DISABLE KEYS */;
+INSERT INTO `colors` VALUES (1,'#5eaac3',1),(2,'#7094b6',1),(3,'#152e49',1),(4,'#e1ca55',1),(5,'#c8743c',1),(6,'#b43831',1),(7,'#662832',1),(8,'#0f0f0f',1),(9,'#ffffff',1),(10,'#cdbda4',1),(11,'#e8b5c5',1),(12,'#af4061',1),(13,'#7f4e36',1),(14,'#918a5d',1),(15,'#37253f',1),(16,'#32512b',1),(17,'#3a435a',1),(18,'#d1f0ce',1),(19,'#b79da9',1),(20,'#414f42',1);
+/*!40000 ALTER TABLE `colors` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `prints`
+--
+
+DROP TABLE IF EXISTS `prints`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `prints` (
+  `print_id` int(11) NOT NULL AUTO_INCREMENT,
+  `print_path` varchar(100) NOT NULL,
+  `types` int(11) NOT NULL,
+  PRIMARY KEY (`print_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `prints`
+--
+
+LOCK TABLES `prints` WRITE;
+/*!40000 ALTER TABLE `prints` DISABLE KEYS */;
+INSERT INTO `prints` VALUES (1,'03ae7dc17d84ce09a9cf1a3631793d53.png',1),(2,'e5bfcf32715714afecb04c377321ddeb.png',1),(3,'d84c1869e0d75d26e985bbae62b2c686.png',1),(4,'dd8d3fdbe35235c339eac7cb515815f3.png',1),(5,'2651bbeb7049675f8b046356250cef48.png',1),(6,'536fbfb110a61dca17662eae3ac7ffaa.png',1),(7,'9a2072363854847edba28c762a30d6d2.png',1),(8,'7a837d7f8a89daf46b4698b8d8bfb6ff.png',1),(9,'e128ee7a4092219e5c1cfc4959d723ff.png',1),(10,'e2c0c89a40d4ef7abafb5cb325c63ad0.png',1),(11,'c27c7676c199c036b8b1fa02fc3b39f7.png',1),(12,'7ed110f4d918e7baaa43eeeb51514a94.png',1),(13,'b52dcb85d4a9c6c8fbbbb0368739356b.png',1),(14,'47d5cf8a46d020303bbb7dcd5711506b.png',1),(15,'1bf6c38a02a6bd7ef3ab3146c3b15c22.png',1),(16,'99d48d04a16672d35aff226acb640b14.png',1),(17,'659742451968d63035af9f7c26719c47.png',1),(18,'18373a18c2a9036202f782b92a2c5532.png',1),(19,'9581b881f9848975111606b575db79cc.png',1),(20,'12e42ebbde05c481bb21c35ad2097e1d.png',1),(21,'109f05ee9a5b07d82046bd6459927087.png',1),(22,'737126cfd525ae094fc7afeed0519799.png',1),(23,'973ec63100ebee2b6c0dbe4831d27195.png',1),(24,'c2f03c46e8edae26bfeccc9335e4e044.png',1),(25,'89400afe04189d85af16b4576d87d779.png',1),(26,'d040fa58735729d3d773045a628b07ff.png',1),(27,'8a447104bc97f2e744e5fa52a05d46cf.png',1),(28,'9e80aa71b8a5dfea6ca4527a2d0bac03.png',1),(29,'0b9bd6ef94880b67b55bdfb247afd46c.png',1),(30,'82a5ad0899408c1cff553fe1f64e96e9.png',1),(31,'00adf3645229e826da98afded37aa429.png',1),(32,'bc998eb802f56eb5e0fb5b7b56bf8f5b.png',1),(33,'1530ecd3b4f7b0550691158c0e9f3ec7.png',1),(34,'978e9f9bf7d6d45530174924f8e27e80.png',1),(35,'a76ed7cc8366ba3a14d99c2cc75919d9.png',1),(36,'f7b5ebb3b0330e5dadfc3d94b195d6e1.png',1),(37,'e661f560ac4e7427c7436c84f7582011.png',1),(38,'dbee842e2dc1be9af4183109b66b12e.png',1),(39,'228817da65ffb6e22f1f40643b024040.png',1),(40,'05ddeb5be16e717b1deb3838b86283ae.png',1),(41,'0df40c80fad1639266d264b14bed381a.png',1),(42,'34e264f594f738be17db8c454240c745.png',1),(43,'34e264f594f738be17db8c454240c745.png',1),(44,'3640d85bd445e3c01be2ee95a2ffd922.png',1),(45,'482be6062105eeddc7855b7357305631.png',1),(46,'48aa3fd76cfd87a407619172539e53fb.png',1),(47,'f6da23a65ee7fb47930c064f5a35a48e.png',1),(48,'c56b2a3e1a5b76ea792f091e9c676c36.png',1),(49,'101ccfaa88fdcf406253ddfed3d52e73.png',1),(50,'8813b7cbac24cd419f273099c1a6a80f.png',1),(51,'653650aeda9a34aec8fa7149243f04a2.png',1),(52,'fe58ae3b154dbae93fecc3ba6c1ed1f5.png',1),(53,'cd86951b69fe00b05e89960305e062dd.png',1),(54,'384e305221c62ecfe9f524452798c88e.png',1),(55,'40533eb55e20601354f53a7f37456fb1.png',1),(56,'34ae7f49f1172e4f8d0a4b6a745956b6.png',1),(57,'136aff37f04c92d3fa376c0e978ab808.png',1),(58,'7c5bf2f19869cd26d98c6b06e7ec7ccd.png',1),(59,'75c6ca04cfedc10ff346533ce8f97ca5.png',1),(60,'f75fd4d3a69eac499f1a8c080c5038bc.png',1),(61,'1357fed868f91c06dc407709815e74b8.png',1),(62,'c163815f964e7f279ed9a4e317f798ab.png',1),(63,'8863e182d7a30360f3b737aeed5b5aa4.png',1),(64,'5b3f47db58328fe57b9fd6a70a0f3545.png',1),(65,'48b35a9033c8be0bb6b51bdb24e01cee.png',1),(66,'4f99680d860ddc43abb5d1056b2ca1d9.png',1),(67,'d0be8195885fcdf709def23875cc175d.png',1),(68,'52ff969e9490d5ce9f755e8e714efc87.png',1),(69,'94ab4b46393fc2dba72d1a79df3194e7.png',1),(70,'35cb6b180cab79f7bb86690f997c12ea.png',1),(71,'8d72d37c739eea3ad3cd2694149e5263.png',1),(72,'528c3b4795312cb68571fcc6a5fd4d56.png',1),(73,'4fdea43a3d4a00472d26a8ee780de636.png',1),(74,'953efb954cad3ece42810746cbc3d6fe.png',1),(75,'ed544917bfc57a55ae48e4ccd17d84c7.png',1);
+/*!40000 ALTER TABLE `prints` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `texturs`
+--
+
+DROP TABLE IF EXISTS `texturs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `texturs` (
+  `textur_id` int(11) NOT NULL AUTO_INCREMENT,
+  `textur_name` varchar(100) NOT NULL,
+  `color_id` int(11) NOT NULL,
+  `type` int(11) NOT NULL,
+  PRIMARY KEY (`textur_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `texturs`
+--
+
+LOCK TABLES `texturs` WRITE;
+/*!40000 ALTER TABLE `texturs` DISABLE KEYS */;
+INSERT INTO `texturs` VALUES (1,'9584395e4b3fc425578668d78bb382b0.jpg',1,1),(2,'78690f757044f783d13febd4d7632069.jpg',2,1),(3,'35a28ca4cdc9aa8428a9b65d55b4c9c3.jpg',3,1),(4,'901b9a54cd821767e239a39814a735c0.jpg',4,1),(5,'dd6272862f79c587c088667187e7d22e.jpg',5,1),(6,'01b3e8de6d1ea99d0f30366c39bdfa5b.jpg',6,1),(7,'04366c31bcd1d3651506837699625d05.jpg',7,1),(8,'6b00ab18d5b4200749aa6834648729c0.jpg',8,1),(9,'12900beafacd7164959239130b8bd0f1.jpg',9,1),(10,'42017bebafbbd168e2247b637e4910df.jpg',10,1),(11,'f0a47962856a6b3b0f5bba2fdf4f68dc.jpg',11,1),(12,'781de8bf0a2785f5091f88b7194535ab.jpg',12,1),(13,'cdbba73b8ba352125c9eeb740b91cc19.jpg',13,1),(14,'819a58e491fa97e6fbac6a74f76d73c8.jpg',14,1),(15,'5ceb1fb047e610ebdd84ccfa0bbe3294.jpg',15,1),(16,'940bb82d0a7faa01d79940521c969933.jpg',16,1),(17,'51bbd68f78370a92cb9cab9ff0f8a2f0.jpg',17,1),(18,'2b6cfde122836caf02e98d8c61d225d9.jpg',18,1),(19,'5df30ca59930a0230a99b9b3e0a3a1ea.jpg',19,1),(20,'26a9488b2cddc4253b622d9b9969d498.jpg',20,1);
+/*!40000 ALTER TABLE `texturs` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `types`
+--
+
+DROP TABLE IF EXISTS `types`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `types` (
+  `type_id` int(11) NOT NULL AUTO_INCREMENT,
+  `type_name` varchar(40) NOT NULL,
+  PRIMARY KEY (`type_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `types`
+--
+
+LOCK TABLES `types` WRITE;
+/*!40000 ALTER TABLE `types` DISABLE KEYS */;
+INSERT INTO `types` VALUES (1,'Classic'),(2,'Alcantara'),(3,'MUSE'),(4,'Verona');
+/*!40000 ALTER TABLE `types` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2021-03-12 21:16:42

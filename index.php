@@ -1,7 +1,16 @@
 <?php 
-$connect = new PDO('mysql:host=localhost;dbname=bookconstr_db;charset=utf8', '', '');
+
+$connect = new PDO('mysql:host=localhost;dbname=bookconstr_db;charset=utf8', 'root', 'Hesaga0808!');
 $prints = $connect->query('SELECT * FROM prints')->fetchall();
 
+$type = 0;
+
+if(!$_POST){
+    $type = 1;
+}
+$colors = $connect->query("SELECT * FROM colors WHERE type=$type")->fetchall();
+
+$types = $connect->query('SELECT * FROM types')->fetchall();
 ?>
 <!DOCYPE html>
 <html xml:lang="ru" lang="ru" class="bx-core bx-no-touch bx-no-retina bx-chrome">
@@ -70,69 +79,82 @@ $prints = $connect->query('SELECT * FROM prints')->fetchall();
 				<div class="arrow toRight"></div>
 				<div class="page-change">
 					<div class="change pagePlus">+</div>
-					<div class="change pageMinus">-</div>
-				</div>
-				<div class="ibw"></div>
-			</div>
-		</div>
-		<div class="workarea cover-edit" style="opacity: 1;">
-			<div class="workarea-arrow">
-				<div class="arrow toLeft" style="width: 60px;"></div>
-				<div class="arrow toRight" style="width: 60px;"></div>
-			</div>
-				<div class="workarea-zoom" style="width: 838.023px; height: 345.719px; font-size: 5.51253px;">
-					<div class="cover-constructor">
-							<div class="type-picker">
-								<div class="selected-type">Classic</div>
-								<ul class="type-dropdown"><li data-id="782322" class="active">Classic<br><small>(искусственная кожа)</small></li><li data-id="782323" class="">Alсantara <br><small>(материал алькантара)</small></li><li data-id="1768865" class="">MUSE<br><small>&nbsp;</small></li><li data-id="2635735" class="">Verona<br><small>&nbsp;</small></li></ul>
-								
-							</div>
-							<div class="color-picker">
-								<p class="title">Выберите цвет</p>
-								<ul><li class="" data-id="579" style="background-color:#5eaac3"></li><li class="active" data-id="580" style="background-color:#7094b6"></li><li class="" data-id="581" style="background-color:#152e49"></li><li class="" data-id="582" style="background-color:#e1ca55"></li><li class="" data-id="583" style="background-color:#c8743c"></li><li class="" data-id="584" style="background-color:#b43831"></li><li class="" data-id="585" style="background-color:#662832"></li><li class="" data-id="586" style="background-color:#0f0f0f"></li><li class="" data-id="587" style="background-color:#ffffff"></li><li class="" data-id="588" style="background-color:#cdbda4"></li><li class="" data-id="589" style="background-color:#e8b5c5"></li><li class="" data-id="699161" style="background-color:#af4061"></li><li class="" data-id="699337" style="background-color:#7f4e36"></li><li class="" data-id="699338" style="background-color:#918a5d"></li><li class="" data-id="699340" style="background-color:#37253f"></li><li class="" data-id="1215372" style="background-color:#32512b"></li><li class="" data-id="1215418" style="background-color:#3a435a"></li><li class="" data-id="1430724" style="background-color:#d1f0ce"></li><li class="" data-id="1774916" style="background-color:#b79da9"></li><li class="" data-id="1775059" style="background-color:#414f42"></li></ul>
-							</div>
-							<div class="print-picker">
-								<p class="title">Выберите принт</p>
-								
-								<div class="printPicker AS" data-dir="right" data-eop="4">
-									<div class="printPicker-arrow">
-										<div class="arrow toLeft"></div>
-										<div class="arrow toRight"></div>
-									</div>
-									<div class="printPicker-wrap">
+                <div class="change pageMinus">-</div>
+            </div>
+            <div class="ibw"></div>
+        </div>
+    </div>
+    <div class="workarea cover-edit" style="opacity: 1;">
+        <div class="workarea-arrow">
+            <div class="arrow toLeft" style="width: 60px;"></div>
+            <div class="arrow toRight" style="width: 60px;"></div>
+        </div>
+            <div class="workarea-zoom" style="width: 838.023px; height: 345.719px; font-size: 5.51253px;">
+                <div class="cover-constructor">
+                        <div class="type-picker">
+                            <div class="selected-type">Classic</div>
+                            <ul class="type-dropdown"><li data-id="1" class="active">Classic<br><small>(искусственная кожа)</small></li><li data-id="782323" class="">Alсantara <br><small>(материал алькантара)</small></li><li data-id="1768865" class="">MUSE<br><small>&nbsp;</small></li><li data-id="2635735" class="">Verona<br><small>&nbsp;</small></li></ul>
+                        
+                        </div>
+                        <div class="color-picker">
+                            <p class="title">Выберите цвет</p>
+                            <ul>
+                            <?php 
+                                $activeFlag = true;
+                                foreach($colors as $color){
+                                    $active = '';
+                                    if($activeFlag){
+                                        $active = 'active';
+                                        $activeFlag = false;
+                                    }
+                                ?>
+                                
+                               <li class="<?=$active?>", data-id="<?=$color['color_id']?>" style="background-color:<?=$color['color_name']?>"></li>
+                            <?php }?>
+                            </ul>
+                        </div>
+                        <div class="print-picker">
+                            <p class="title">Выберите принт</p>
+                            
+                            <div class="printPicker AS" data-dir="right" data-eop="4">
+                                <div class="printPicker-arrow">
+                                    <div class="arrow toLeft"></div>
+                                    <div class="arrow toRight"></div>
+                                </div>
+                                <div class="printPicker-wrap">
 
 <div class="printPickerList cols-4" style="top: 0px;">
 
 <?php foreach($prints as $print){ ?>
 <div class="print " data-id="<?=$print['print_id']?>">
-    <div class="img" style="background-image:url(images/<?=$print['print_path']?>)">
-            <img src="images/prop-1-1.png" alt="">
-        </div>
+<div class="img" style="background-image:url(images/<?=$print['print_path']?>)">
+        <img src="images/prop-1-1.png" alt="">
     </div>
+</div>
 <?php } ?>
 </div>
-									</div>
-								</div>
-							</div>
-							<div class="decor-picker">
-                                <button class="ad-bnt use-photo">С ФОТОГРАФИЕЙ</button>
-                                <button class="ad-bnt use-print">С ПРИНТОМ</button>
-                                <button class="ad-bnt use-text">Ваш текст</button>
+                                </div>
                             </div>
-							<div class="pager-show">
-								<p>ОБЛОЖКА <img src="images/cover-button.png" class="toPager"></p><br>
-								<div class="togglePager">Все страницы</div>
-							</div>
-							<div class="cover-view"><div data-id="580" class="cover-background" style="background-image:url('/upload/iblock/786/78690f757044f783d13febd4d7632069.jpg')"></div><div class="shadow-background"></div><div class="elements"><div class="print-background cm7" style="background-image:url('/upload/iblock/467/46737cfa36693ed25cbda6a93e1ec654.png' );width:46.666666666666664%;height:46.666666666666664%;left:26.666666666666668%;top:26.666666666666668%;"></div></div></div>
-					</div>
-					<div class="page-constructor">
-						<div class="chooseMaket chooseMaketLeft AS" data-dir="left">
-							<div class="chooseMaket-arrow">
-								<div class="arrow toLeft"></div>
-								<div class="arrow toRight"></div>
-							</div>
-							<div class="maketList-wrap">
-								<div class="maketList" style="top: 0px;"><div class="maket active" data-id="3605981"><svg width="100" height="100" style="width: 32.25px; height: 32.25px;"><rect x="0%" y="0%" width="100%" height="100%" style="fill:#cdcdcd;"></rect></svg></div><div class="maket" data-id="3605982"><svg width="100" height="100" style="width: 32.25px; height: 32.25px;"><rect x="10%" y="10%" width="80%" height="80%" style="fill:#cdcdcd;"></rect></svg></div><div class="maket" data-id="3605983"><svg width="100" height="100" style="width: 32.25px; height: 32.25px;"><rect x="10%" y="10%" width="39.5%" height="39.5%" style="fill:#cdcdcd;"></rect><rect x="50.5%" y="10%" width="39.5%" height="39.5%" style="fill:#cdcdcd;"></rect><rect x="10%" y="50.5%" width="39.5%" height="39.5%" style="fill:#cdcdcd;"></rect><rect x="50.5%" y="50.5%" width="39.5%" height="39.5%" style="fill:#cdcdcd;"></rect></svg></div><div class="maket" data-id="3605984"><svg width="100" height="100" style="width: 32.25px; height: 32.25px;"><rect x="10%" y="10%" width="26%" height="26%" style="fill:#cdcdcd;"></rect><rect x="37%" y="10%" width="26%" height="26%" style="fill:#cdcdcd;"></rect><rect x="64%" y="10%" width="26%" height="26%" style="fill:#cdcdcd;"></rect><rect x="10%" y="37%" width="26%" height="26%" style="fill:#cdcdcd;"></rect><rect x="37%" y="37%" width="26%" height="26%" style="fill:#cdcdcd;"></rect><rect x="64%" y="37%" width="26%" height="26%" style="fill:#cdcdcd;"></rect><rect x="10%" y="64%" width="26%" height="26%" style="fill:#cdcdcd;"></rect><rect x="37%" y="64%" width="26%" height="26%" style="fill:#cdcdcd;"></rect><rect x="64%" y="64%" width="26%" height="26%" style="fill:#cdcdcd;"></rect></svg></div><div class="maket" data-id="3605985"><svg width="100" height="100" style="width: 32.25px; height: 32.25px;"><rect x="10%" y="23.5%" width="39.5%" height="53%" style="fill:#cdcdcd;"></rect><rect x="50.5%" y="23.5%" width="39.5%" height="53%" style="fill:#cdcdcd;"></rect></svg></div><div class="maket" data-id="3605989"><svg width="100" height="100" style="width: 32.25px; height: 32.25px;"><text x="35%" y="50%">text</text></svg></div><div class="maket" data-id="3605991"><svg width="100" height="100" style="width: 32.25px; height: 32.25px;"><rect x="23.5%" y="10%" width="53%" height="39.5%" style="fill:#cdcdcd;"></rect><rect x="23.5%" y="50.5%" width="53%" height="39.5%" style="fill:#cdcdcd;"></rect></svg></div><div class="maket" data-id="3605994"><svg width="100" height="100" style="width: 32.25px; height: 32.25px;"><rect x="0%" y="16.84%" width="49.5%" height="32.66%" style="fill:#cdcdcd;"></rect><rect x="50.5%" y="16.84%" width="49.5%" height="32.66%" style="fill:#cdcdcd;"></rect><rect x="0%" y="50.5%" width="49.5%" height="32.66%" style="fill:#cdcdcd;"></rect><rect x="50.5%" y="50.5%" width="49.5%" height="32.66%" style="fill:#cdcdcd;"></rect></svg></div><div class="maket" data-id="3605995"><svg width="100" height="100" style="width: 32.25px; height: 32.25px;"><rect x="16.84%" y="0%" width="32.66%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="16.84%" y="50.5%" width="32.66%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="50.5%" y="0%" width="32.66%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="50.5%" y="50.5%" width="32.66%" height="49.5%" style="fill:#cdcdcd;"></rect></svg></div><div class="maket" data-id="3605996"><svg width="100" height="100" style="width: 32.25px; height: 32.25px;"><rect x="0%" y="0%" width="32.66%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="0%" y="50.5%" width="32.66%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="33.66%" y="0%" width="32.66%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="33.66%" y="50.5%" width="32.66%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="67.33%" y="0%" width="32.66%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="67.33%" y="50.5%" width="32.66%" height="49.5%" style="fill:#cdcdcd;"></rect></svg></div><div class="maket" data-id="3605997"><svg width="100" height="100" style="width: 32.25px; height: 32.25px;"><rect x="0%" y="0%" width="49.5%" height="32.66%" style="fill:#cdcdcd;"></rect><rect x="50.5%" y="0%" width="49.5%" height="32.66%" style="fill:#cdcdcd;"></rect><rect x="0%" y="33.66%" width="49.5%" height="32.66%" style="fill:#cdcdcd;"></rect><rect x="50.5%" y="33.66%" width="49.5%" height="32.66%" style="fill:#cdcdcd;"></rect><rect x="0%" y="67.33%" width="49.5%" height="32.66%" style="fill:#cdcdcd;"></rect><rect x="50.5%" y="67.33%" width="49.5%" height="32.66%" style="fill:#cdcdcd;"></rect></svg></div><div class="maket" data-id="3605998"><svg width="100" height="100" style="width: 32.25px; height: 32.25px;"><rect x="0%" y="50.5%" width="32.66%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="33.66%" y="50.5%" width="32.66%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="67.33%" y="50.5%" width="32.66%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="0%" y="0%" width="100%" height="49.5%" style="fill:#cdcdcd;"></rect></svg></div><div class="maket" data-id="3605999"><svg width="100" height="100" style="width: 32.25px; height: 32.25px;"><rect x="0%" y="0%" width="32.66%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="33.66%" y="0%" width="32.66%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="67.33%" y="0%" width="32.66%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="0%" y="50.5%" width="100%" height="49.5%" style="fill:#cdcdcd;"></rect></svg></div><div class="maket" data-id="3606000"><svg width="100" height="100" style="width: 32.25px; height: 32.25px;"><rect x="0%" y="50.5%" width="32.66%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="33.66%" y="50.5%" width="32.66%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="67.33%" y="50.5%" width="32.66%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="0%" y="0%" width="49.5%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="50.5%" y="0%" width="49.5%" height="49.5%" style="fill:#cdcdcd;"></rect></svg></div><div class="maket" data-id="3606001"><svg width="100" height="100" style="width: 32.25px; height: 32.25px;"><rect x="0%" y="0%" width="32.66%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="33.66%" y="0%" width="32.66%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="67.33%" y="0%" width="32.66%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="0%" y="50.5%" width="49.5%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="50.5%" y="50.5%" width="49.5%" height="49.5%" style="fill:#cdcdcd;"></rect></svg></div><div class="maket" data-id="3606002"><svg width="100" height="100" style="width: 32.25px; height: 32.25px;"><rect x="23.5%" y="10%" width="26%" height="39.5%" style="fill:#cdcdcd;"></rect><rect x="23.5%" y="50.5%" width="26%" height="39.5%" style="fill:#cdcdcd;"></rect><rect x="50.5%" y="10%" width="26%" height="39.5%" style="fill:#cdcdcd;"></rect><rect x="50.5%" y="50.5%" width="26%" height="39.5%" style="fill:#cdcdcd;"></rect></svg></div><div class="maket" data-id="3606003"><svg width="100" height="100" style="width: 32.25px; height: 32.25px;"><rect x="10%" y="23.5%" width="39.5%" height="26%" style="fill:#cdcdcd;"></rect><rect x="50.5%" y="23.5%" width="39.5%" height="26%" style="fill:#cdcdcd;"></rect><rect x="10%" y="50.5%" width="39.5%" height="26%" style="fill:#cdcdcd;"></rect><rect x="50.5%" y="50.5%" width="39.5%" height="26%" style="fill:#cdcdcd;"></rect></svg></div><div class="maket" data-id="3606009"><svg width="100" height="100" style="width: 32.25px; height: 32.25px;"><rect x="10%" y="10%" width="26%" height="26%" style="fill:#cdcdcd;"></rect><rect x="37%" y="10%" width="26%" height="26%" style="fill:#cdcdcd;"></rect><rect x="64%" y="10%" width="26%" height="26%" style="fill:#cdcdcd;"></rect><rect x="10%" y="37%" width="26%" height="26%" style="fill:#cdcdcd;"></rect><rect x="10%" y="64%" width="26%" height="26%" style="fill:#cdcdcd;"></rect><rect x="37%" y="37%" width="53%" height="53%" style="fill:#cdcdcd;"></rect></svg></div><div class="maket" data-id="3666608"><svg width="100" height="100" style="width: 32.25px; height: 32.25px;"><rect x="0%" y="16.84%" width="49.5%" height="66.32%" style="fill:#cdcdcd;"></rect><rect x="50.5%" y="16.84%" width="49.5%" height="66.32%" style="fill:#cdcdcd;"></rect></svg></div><div class="maket" data-id="3666609"><svg width="100" height="100" style="width: 32.25px; height: 32.25px;"><rect x="16.84%" y="0%" width="66.32%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="16.84%" y="50.5%" width="66.32%" height="49.5%" style="fill:#cdcdcd;"></rect></svg></div><div class="maket" data-id="3671524"><svg width="100" height="100" style="width: 32.25px; height: 32.25px;"><rect x="0%" y="0%" width="100%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="0%" y="50.5%" width="49.5%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="50.5%" y="50.5%" width="49.5%" height="49.5%" style="fill:#cdcdcd;"></rect></svg></div><div class="maket" data-id="3671525"><svg width="100" height="100" style="width: 32.25px; height: 32.25px;"><rect x="0%" y="0%" width="49.5%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="50.5%" y="0%" width="49.5%" height="100%" style="fill:#cdcdcd;"></rect><rect x="0%" y="50.5%" width="49.5%" height="49.5%" style="fill:#cdcdcd;"></rect></svg></div><div class="maket" data-id="3671526"><svg width="100" height="100" style="width: 32.25px; height: 32.25px;"><rect x="0%" y="0%" width="49.5%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="50.5%" y="0%" width="49.5%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="0%" y="50.5%" width="100%" height="49.5%" style="fill:#cdcdcd;"></rect></svg></div><div class="maket" data-id="3671527"><svg width="100" height="100" style="width: 32.25px; height: 32.25px;"><rect x="0%" y="0%" width="49.5%" height="100%" style="fill:#cdcdcd;"></rect><rect x="50.5%" y="0%" width="49.5%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="50.5%" y="50.5%" width="49.5%" height="49.5%" style="fill:#cdcdcd;"></rect></svg></div></div>
+                        </div>
+                        <div class="decor-picker">
+                            <button class="ad-bnt use-photo">С ФОТОГРАФИЕЙ</button>
+                            <button class="ad-bnt use-print">С ПРИНТОМ</button>
+                            <button class="ad-bnt use-text">Ваш текст</button>
+                        </div>
+                        <div class="pager-show">
+                            <p>ОБЛОЖКА <img src="images/cover-button.png" class="toPager"></p><br>
+                            <div class="togglePager">Все страницы</div>
+                        </div>
+                        <div class="cover-view"><div data-id="580" class="cover-background" style="background-image:url('/upload/iblock/786/78690f757044f783d13febd4d7632069.jpg')"></div><div class="shadow-background"></div><div class="elements"><div class="print-background cm7" style="background-image:url('/upload/iblock/467/46737cfa36693ed25cbda6a93e1ec654.png' );width:46.666666666666664%;height:46.666666666666664%;left:26.666666666666668%;top:26.666666666666668%;"></div></div></div>
+                </div>
+                <div class="page-constructor">
+                    <div class="chooseMaket chooseMaketLeft AS" data-dir="left">
+                        <div class="chooseMaket-arrow">
+                            <div class="arrow toLeft"></div>
+                            <div class="arrow toRight"></div>
+                        </div>
+                        <div class="maketList-wrap">
+                            <div class="maketList" style="top: 0px;"><div class="maket active" data-id="3605981"><svg width="100" height="100" style="width: 32.25px; height: 32.25px;"><rect x="0%" y="0%" width="100%" height="100%" style="fill:#cdcdcd;"></rect></svg></div><div class="maket" data-id="3605982"><svg width="100" height="100" style="width: 32.25px; height: 32.25px;"><rect x="10%" y="10%" width="80%" height="80%" style="fill:#cdcdcd;"></rect></svg></div><div class="maket" data-id="3605983"><svg width="100" height="100" style="width: 32.25px; height: 32.25px;"><rect x="10%" y="10%" width="39.5%" height="39.5%" style="fill:#cdcdcd;"></rect><rect x="50.5%" y="10%" width="39.5%" height="39.5%" style="fill:#cdcdcd;"></rect><rect x="10%" y="50.5%" width="39.5%" height="39.5%" style="fill:#cdcdcd;"></rect><rect x="50.5%" y="50.5%" width="39.5%" height="39.5%" style="fill:#cdcdcd;"></rect></svg></div><div class="maket" data-id="3605984"><svg width="100" height="100" style="width: 32.25px; height: 32.25px;"><rect x="10%" y="10%" width="26%" height="26%" style="fill:#cdcdcd;"></rect><rect x="37%" y="10%" width="26%" height="26%" style="fill:#cdcdcd;"></rect><rect x="64%" y="10%" width="26%" height="26%" style="fill:#cdcdcd;"></rect><rect x="10%" y="37%" width="26%" height="26%" style="fill:#cdcdcd;"></rect><rect x="37%" y="37%" width="26%" height="26%" style="fill:#cdcdcd;"></rect><rect x="64%" y="37%" width="26%" height="26%" style="fill:#cdcdcd;"></rect><rect x="10%" y="64%" width="26%" height="26%" style="fill:#cdcdcd;"></rect><rect x="37%" y="64%" width="26%" height="26%" style="fill:#cdcdcd;"></rect><rect x="64%" y="64%" width="26%" height="26%" style="fill:#cdcdcd;"></rect></svg></div><div class="maket" data-id="3605985"><svg width="100" height="100" style="width: 32.25px; height: 32.25px;"><rect x="10%" y="23.5%" width="39.5%" height="53%" style="fill:#cdcdcd;"></rect><rect x="50.5%" y="23.5%" width="39.5%" height="53%" style="fill:#cdcdcd;"></rect></svg></div><div class="maket" data-id="3605989"><svg width="100" height="100" style="width: 32.25px; height: 32.25px;"><text x="35%" y="50%">text</text></svg></div><div class="maket" data-id="3605991"><svg width="100" height="100" style="width: 32.25px; height: 32.25px;"><rect x="23.5%" y="10%" width="53%" height="39.5%" style="fill:#cdcdcd;"></rect><rect x="23.5%" y="50.5%" width="53%" height="39.5%" style="fill:#cdcdcd;"></rect></svg></div><div class="maket" data-id="3605994"><svg width="100" height="100" style="width: 32.25px; height: 32.25px;"><rect x="0%" y="16.84%" width="49.5%" height="32.66%" style="fill:#cdcdcd;"></rect><rect x="50.5%" y="16.84%" width="49.5%" height="32.66%" style="fill:#cdcdcd;"></rect><rect x="0%" y="50.5%" width="49.5%" height="32.66%" style="fill:#cdcdcd;"></rect><rect x="50.5%" y="50.5%" width="49.5%" height="32.66%" style="fill:#cdcdcd;"></rect></svg></div><div class="maket" data-id="3605995"><svg width="100" height="100" style="width: 32.25px; height: 32.25px;"><rect x="16.84%" y="0%" width="32.66%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="16.84%" y="50.5%" width="32.66%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="50.5%" y="0%" width="32.66%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="50.5%" y="50.5%" width="32.66%" height="49.5%" style="fill:#cdcdcd;"></rect></svg></div><div class="maket" data-id="3605996"><svg width="100" height="100" style="width: 32.25px; height: 32.25px;"><rect x="0%" y="0%" width="32.66%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="0%" y="50.5%" width="32.66%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="33.66%" y="0%" width="32.66%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="33.66%" y="50.5%" width="32.66%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="67.33%" y="0%" width="32.66%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="67.33%" y="50.5%" width="32.66%" height="49.5%" style="fill:#cdcdcd;"></rect></svg></div><div class="maket" data-id="3605997"><svg width="100" height="100" style="width: 32.25px; height: 32.25px;"><rect x="0%" y="0%" width="49.5%" height="32.66%" style="fill:#cdcdcd;"></rect><rect x="50.5%" y="0%" width="49.5%" height="32.66%" style="fill:#cdcdcd;"></rect><rect x="0%" y="33.66%" width="49.5%" height="32.66%" style="fill:#cdcdcd;"></rect><rect x="50.5%" y="33.66%" width="49.5%" height="32.66%" style="fill:#cdcdcd;"></rect><rect x="0%" y="67.33%" width="49.5%" height="32.66%" style="fill:#cdcdcd;"></rect><rect x="50.5%" y="67.33%" width="49.5%" height="32.66%" style="fill:#cdcdcd;"></rect></svg></div><div class="maket" data-id="3605998"><svg width="100" height="100" style="width: 32.25px; height: 32.25px;"><rect x="0%" y="50.5%" width="32.66%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="33.66%" y="50.5%" width="32.66%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="67.33%" y="50.5%" width="32.66%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="0%" y="0%" width="100%" height="49.5%" style="fill:#cdcdcd;"></rect></svg></div><div class="maket" data-id="3605999"><svg width="100" height="100" style="width: 32.25px; height: 32.25px;"><rect x="0%" y="0%" width="32.66%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="33.66%" y="0%" width="32.66%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="67.33%" y="0%" width="32.66%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="0%" y="50.5%" width="100%" height="49.5%" style="fill:#cdcdcd;"></rect></svg></div><div class="maket" data-id="3606000"><svg width="100" height="100" style="width: 32.25px; height: 32.25px;"><rect x="0%" y="50.5%" width="32.66%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="33.66%" y="50.5%" width="32.66%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="67.33%" y="50.5%" width="32.66%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="0%" y="0%" width="49.5%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="50.5%" y="0%" width="49.5%" height="49.5%" style="fill:#cdcdcd;"></rect></svg></div><div class="maket" data-id="3606001"><svg width="100" height="100" style="width: 32.25px; height: 32.25px;"><rect x="0%" y="0%" width="32.66%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="33.66%" y="0%" width="32.66%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="67.33%" y="0%" width="32.66%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="0%" y="50.5%" width="49.5%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="50.5%" y="50.5%" width="49.5%" height="49.5%" style="fill:#cdcdcd;"></rect></svg></div><div class="maket" data-id="3606002"><svg width="100" height="100" style="width: 32.25px; height: 32.25px;"><rect x="23.5%" y="10%" width="26%" height="39.5%" style="fill:#cdcdcd;"></rect><rect x="23.5%" y="50.5%" width="26%" height="39.5%" style="fill:#cdcdcd;"></rect><rect x="50.5%" y="10%" width="26%" height="39.5%" style="fill:#cdcdcd;"></rect><rect x="50.5%" y="50.5%" width="26%" height="39.5%" style="fill:#cdcdcd;"></rect></svg></div><div class="maket" data-id="3606003"><svg width="100" height="100" style="width: 32.25px; height: 32.25px;"><rect x="10%" y="23.5%" width="39.5%" height="26%" style="fill:#cdcdcd;"></rect><rect x="50.5%" y="23.5%" width="39.5%" height="26%" style="fill:#cdcdcd;"></rect><rect x="10%" y="50.5%" width="39.5%" height="26%" style="fill:#cdcdcd;"></rect><rect x="50.5%" y="50.5%" width="39.5%" height="26%" style="fill:#cdcdcd;"></rect></svg></div><div class="maket" data-id="3606009"><svg width="100" height="100" style="width: 32.25px; height: 32.25px;"><rect x="10%" y="10%" width="26%" height="26%" style="fill:#cdcdcd;"></rect><rect x="37%" y="10%" width="26%" height="26%" style="fill:#cdcdcd;"></rect><rect x="64%" y="10%" width="26%" height="26%" style="fill:#cdcdcd;"></rect><rect x="10%" y="37%" width="26%" height="26%" style="fill:#cdcdcd;"></rect><rect x="10%" y="64%" width="26%" height="26%" style="fill:#cdcdcd;"></rect><rect x="37%" y="37%" width="53%" height="53%" style="fill:#cdcdcd;"></rect></svg></div><div class="maket" data-id="3666608"><svg width="100" height="100" style="width: 32.25px; height: 32.25px;"><rect x="0%" y="16.84%" width="49.5%" height="66.32%" style="fill:#cdcdcd;"></rect><rect x="50.5%" y="16.84%" width="49.5%" height="66.32%" style="fill:#cdcdcd;"></rect></svg></div><div class="maket" data-id="3666609"><svg width="100" height="100" style="width: 32.25px; height: 32.25px;"><rect x="16.84%" y="0%" width="66.32%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="16.84%" y="50.5%" width="66.32%" height="49.5%" style="fill:#cdcdcd;"></rect></svg></div><div class="maket" data-id="3671524"><svg width="100" height="100" style="width: 32.25px; height: 32.25px;"><rect x="0%" y="0%" width="100%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="0%" y="50.5%" width="49.5%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="50.5%" y="50.5%" width="49.5%" height="49.5%" style="fill:#cdcdcd;"></rect></svg></div><div class="maket" data-id="3671525"><svg width="100" height="100" style="width: 32.25px; height: 32.25px;"><rect x="0%" y="0%" width="49.5%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="50.5%" y="0%" width="49.5%" height="100%" style="fill:#cdcdcd;"></rect><rect x="0%" y="50.5%" width="49.5%" height="49.5%" style="fill:#cdcdcd;"></rect></svg></div><div class="maket" data-id="3671526"><svg width="100" height="100" style="width: 32.25px; height: 32.25px;"><rect x="0%" y="0%" width="49.5%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="50.5%" y="0%" width="49.5%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="0%" y="50.5%" width="100%" height="49.5%" style="fill:#cdcdcd;"></rect></svg></div><div class="maket" data-id="3671527"><svg width="100" height="100" style="width: 32.25px; height: 32.25px;"><rect x="0%" y="0%" width="49.5%" height="100%" style="fill:#cdcdcd;"></rect><rect x="50.5%" y="0%" width="49.5%" height="49.5%" style="fill:#cdcdcd;"></rect><rect x="50.5%" y="50.5%" width="49.5%" height="49.5%" style="fill:#cdcdcd;"></rect></svg></div></div>
 							</div>
 						</div>
 						<div class="chooseMaket chooseMaketRight AS" data-dir="right">
@@ -148,7 +170,7 @@ $prints = $connect->query('SELECT * FROM prints')->fetchall();
 							
 						</div>
 						<div class="builderBlock">
-							<div class="elements"><dvi class="bgwrap"><div class="bg bgleft" style="background-color:#ffffff"></div><div class="bg bgright" style="background-color:#ffffff"></div></dvi><div class="photo droppable-image empty zoomIn" style="width:50%;height:100%;left:0%;top:0%;"><img alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" class="image r0 horizontal" style="left:NaN%;top:NaN%;" data-dh="0" data-dw="0.01500000000001478"><div class="changeImage"><div class="changeImageElem delete"></div><div class="changeImageElem rotate"></div><div class="changeImageElem zoomOut"></div><div class="changeImageElem zoomIn"></div><div class="changeImageElem move"></div></div></div><div class="photo droppable-image empty zoomIn" style="width:50%;height:100%;left:50%;top:0%;"><img alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" class="image r0 horizontal" style="left:NaN%;top:NaN%;" data-dh="0" data-dw="0.01500000000001478"><div class="changeImage"><div class="changeImageElem delete"></div><div class="changeImageElem rotate"></div><div class="changeImageElem zoomOut"></div><div class="changeImageElem zoomIn"></div><div class="changeImageElem move"></div></div></div><div class="trimming" style="border: solid 1.417em rgba(255,0,0,.5);"></div></div>
+							<div class="elements"><dvi class="bgwrap"><div class="bg bgleft" style="background-color:#ffffff"></div><div class="bg bgright" style="background-color:#ffffff"></div></dvi><div class="photo droppable-image empty zoomIn" style="width:25%;height:100%;left:0%;top:0%;"><img alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" class="image r0 horizontal" style="left:NaN%;top:NaN%;" data-dh="0" data-dw="0.01500000000001478"><div class="changeImage"><div class="changeImageElem delete"></div><div class="changeImageElem rotate"></div><div class="changeImageElem zoomOut"></div><div class="changeImageElem zoomIn"></div><div class="changeImageElem move"></div></div></div><div class="photo droppable-image empty zoomIn" style="width:50%;height:100%;left:50%;top:0%;"><img alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" class="image r0 horizontal" style="left:NaN%;top:NaN%;" data-dh="0" data-dw="0.01500000000001478"><div class="changeImage"><div class="changeImageElem delete"></div><div class="changeImageElem rotate"></div><div class="changeImageElem zoomOut"></div><div class="changeImageElem zoomIn"></div><div class="changeImageElem move"></div></div></div><div class="trimming" style="border: solid 1.417em rgba(255,0,0,.5);"></div></div>
 						</div>
 						<div class="bottomBar">
 							<div class="attrib attribLeft">
