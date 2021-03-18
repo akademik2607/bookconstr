@@ -463,13 +463,13 @@ body {
 
 #AD .chooseMaketFull-arrow .arrow.toLeft {
     left: -6%;
-    background-image: url(/bitrix/css/ald/./img/left_arrow.png);
+    background-image: url(../images/left_arrow.png);
     background-position: left center;
 }
 
 #AD .chooseMaketFull-arrow .arrow.toRight {
     right: -6%;
-    background-image: url(/bitrix/css/ald/./img/right_arrow.png);
+    background-image: url(../images/right_arrow.png);
     background-position: right center;
 }
 
@@ -1271,13 +1271,13 @@ div#dragImage {}
 
 #AD .workarea .printPicker-arrow .toLeft {
     top: -50px;
-    background-image: url(/bitrix/css/ald/./img/top_arrow.png);
+    background-image: url(../images/top_arrow.png);
     height: 50px;
 }
 
 #AD .workarea .printPicker-arrow .toRight {
     bottom: -25px;
-    background-image: url(/bitrix/css/ald/./img/bottom_arrow.png);
+    background-image: url(../images/bottom_arrow.png);
 }
 
 #AD .workarea .printPicker-wrap {

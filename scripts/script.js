@@ -59,7 +59,7 @@ const changeTextur = () => {
         activeType = typeDropDown.querySelector('.active');
     const textur = {
         color_id: activeColor.dataset.id,
-        type_id: activeType.dataset.id
+        type_id:1                    //activeType.dataset.id  Изменить на это
     };
 
     const textJson = JSON.stringify(textur);
@@ -163,9 +163,7 @@ const changeMaketPage = () => {
             photos = pageElements.querySelectorAll('.photo');
 
         
-        /*photos.forEach((item) => {
-            item.remove();
-        });*/
+    
         rectList.forEach((item) => {
             let elem = document.createElement('div');
             elem.classList.add('photo', 'droppable-image', 'empty', 'zoomIn');
@@ -185,33 +183,8 @@ const changeMaketPage = () => {
             elem.innerHTML = '<img alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" class="image r0 horizontal" style="left:NaN%;top:NaN%;"';
             pageElements.append(elem);
         });
+   };
 
-        /*const svg = target.querySelector('svg'),
-            rectList = svg.querySelectorAll('rect'),
-            photos = pageElements.querySelectorAll('.photo');
-        console.log(leftMakets.querySelector('.active svg'));
-        console.log(rightMakets.querySelector('.active svg'));
-
-        
-        photos.forEach((item) => {
-            item.remove();
-        });
-        rectList.forEach((item) => {
-            let elem = document.createElement('div');
-            elem.classList.add('photo', 'droppable-image', 'empty', 'zoomIn');
-            //elem.style.width = item.width.animVal.valueAsString;
-            elem.style.width = String(item.width.animVal.valueInSpecifiedUnits / 2) + '%';
-            console.log(item.width.animVal);
-            elem.style.height = item.height.animVal.valueAsString;
-            elem.style.right = String(item.x.animVal.valueInSpecifiedUnits / 2) + '%';
-            elem.style.top = item.y.animVal.valueAsString;
-            
-
-            elem.innerHTML = '<img alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" class="image r0 horizontal" style="left:NaN%;top:NaN%;"';
-            pageElements.append(elem);
-            console.log(elem);
-        });*/
-    };
     function checkMaket(event){
         let target = event.target;
         const photos = pageElements.querySelectorAll('.photo');
@@ -243,4 +216,45 @@ const changeMaketPage = () => {
 
 changeMaketPage();
 
+//dounload photo button
 
+const pushDounloadPhoto = () => {
+    const uploadPhotoPopup = document.getElementById('UploadPhotoPopup'),
+        uploadPhotoPopupOpen = document.querySelector('.a-load-photo');
+    console.log(uploadPhotoPopupOpen);
+    uploadPhotoPopupOpen.addEventListener('click', () =>{ 
+        uploadPhotoPopup.classList.remove('mfp-hide');
+        console.log(uploadPhotoPopup);
+        uploadPhotoPopup.classList.add('mfp-bg');
+        uploadPhotoPopup.classList.add('mfp-ready');
+        
+        //uploadPhotoPopup.classList.add('mfp-wrap');
+    });
+};
+
+pushDounloadPhoto();
+
+const printPickerArrow = () => {
+    const arrowToRight = document.querySelector('#AD .workarea .printPicker-arrow .toRight'), 
+        arrowToLeft = document.querySelector('#AD .workarea .printPicker-arrow .toLeft'),
+        printPickerList = document.querySelector('.printPickerList'),
+        print = printPickerList.querySelector('.print');
+        
+    const pick = (event) => {
+        const target = event.target;
+        console.log(print.offsetHeight);
+        const top = parseInt(printPickerList.style.top);
+        console.log(top);
+        console.log(printPickerList.offsetHeight)
+        if(target.classList.contains('toLeft') && top < printPickerList.offsetHeight){
+            printPickerList.style.top = `${top - print.offsetHeight}px`;
+        } else if(target.classList.contains('toRight') && top < 0){
+            printPickerList.style.top = `${top + print.offsetHeight}px`;
+        }
+    };
+
+    arrowToRight.addEventListener('click', pick);
+    arrowToLeft.addEventListener('click', pick);
+};
+
+printPickerArrow();

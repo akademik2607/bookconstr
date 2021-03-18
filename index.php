@@ -35,7 +35,7 @@ $types = $connect->query('SELECT * FROM types')->fetchall();
 				</div>
 				<div class="a-formats">
 					ФОРМАТ<br>
-					<div id="format-tab"><a href="javascript:$('#AD').AD('setSize', 560)" class="a-format active" data-size="560">15x15</a> <a href="javascript:$('#AD').AD('setSize', 561)" class="a-format" data-size="561">20x20</a> <a href="javascript:$('#AD').AD('setSize', 562)" class="a-format" data-size="562">25x25</a> <a href="javascript:$('#AD').AD('setSize', 3666613)" class="a-format" data-size="3666613">30x30</a> </div>
+					<div id="format-tab"><a href="javascript:$('#AD').AD('setSize', 560)" class="a-format active" data-size="560">15x18</a> <a href="javascript:$('#AD').AD('setSize', 561)" class="a-format" data-size="561">20x20</a> <a href="javascript:$('#AD').AD('setSize', 562)" class="a-format" data-size="562">25x25</a> <a href="javascript:$('#AD').AD('setSize', 3666613)" class="a-format" data-size="3666613">30x30</a> </div>
 				</div>
 				<!--<a href="#" class="a-refresh"></a>-->
 				<div class="a-cost">
